@@ -1,4 +1,11 @@
-import { ApolloClient, InMemoryCache, makeVar } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  makeVar,
+  HttpLink,
+  ApolloLink,
+  concat,
+} from "@apollo/client";
 
 const TOKEN = "token";
 const DARK_MODE = "DARK_MODE";
@@ -27,7 +34,21 @@ export const disableDarkMode = () => {
   darkModeVar(false);
 };
 
+const httpLink = new HttpLink({ uri: "http://localhost:4000/graphql" });
+
+const authMiddleware = new ApolloLink((operation, forward) => {
+  // add the authorization to the headers
+  operation.setContext(({ headers = {} }) => ({
+    headers: {
+      ...headers,
+      token: localStorage.getItem("token") || null,
+    },
+  }));
+
+  return forward(operation);
+});
+
 export const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  link: concat(authMiddleware, httpLink),
   cache: new InMemoryCache(),
 });
