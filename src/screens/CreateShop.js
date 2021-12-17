@@ -32,7 +32,7 @@ function CreateShop() {
     CREATE_COFFEESHOP_MUTATION,
     { onCompleted }
   );
-  const { register, handleSubmit, getValues, formState } = useForm({
+  const { register, handleSubmit } = useForm({
     mode: "onChange",
   });
   const onSubmitValid = data => {

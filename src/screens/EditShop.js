@@ -53,7 +53,7 @@ const EditShop = () => {
     history.push(routes.home);
   };
 
-  const { loading, error, data } = useQuery(SEE_COFFEESHOP_QUERY, {
+  const { loading, data } = useQuery(SEE_COFFEESHOP_QUERY, {
     variables: { id: shopId },
   });
 
@@ -64,7 +64,7 @@ const EditShop = () => {
     }
   );
 
-  const { register, handleSubmit, getValues, formState } = useForm({
+  const { register, handleSubmit, getValues } = useForm({
     mode: "onChange",
   });
   if (loading) return null;

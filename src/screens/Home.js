@@ -13,7 +13,7 @@ const COFFEE_SHOP_QUERY = gql`
 `;
 
 const Home = () => {
-  const { loading, error, data } = useQuery(COFFEE_SHOP_QUERY, {
+  const { loading, data } = useQuery(COFFEE_SHOP_QUERY, {
     variables: { page: 1 },
   });
   if (loading) return null;
