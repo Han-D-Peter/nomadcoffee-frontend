@@ -37,7 +37,7 @@ export const disableDarkMode = () => {
 const httpLink = new HttpLink({
   uri:
     process.env.NODE_ENV === "production"
-      ? "https://instaclone-backend-peter.herokuapp.com/graphql"
+      ? "https://nomadcoffee-backend-peter.herokuapp.com/graphql"
       : "http://localhost:4000/graphql",
 });
 
