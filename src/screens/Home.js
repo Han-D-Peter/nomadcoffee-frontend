@@ -16,6 +16,7 @@ const Home = () => {
   const { loading, data } = useQuery(COFFEE_SHOP_QUERY, {
     variables: { page: 1 },
   });
+  
   if (loading) return null;
 
   const { seeCoffeeShops } = data;
